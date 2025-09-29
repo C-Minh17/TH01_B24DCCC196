@@ -1,12 +1,20 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./tf.css"
 
 function TrafficLight (){
   const [stt , setStt ] = useState(3)
 
   const change = () => {
-    setStt(stt + 1)
+    setStt((prev) => prev + 1);
   }
+
+  useEffect(()=>{
+    const interval = setInterval(() => {
+      setStt((prev) => prev + 1);;
+    }, 2000);
+
+    return () => clearInterval(interval);
+  },[])
 
   return (
     <div>
